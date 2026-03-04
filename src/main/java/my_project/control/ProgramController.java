@@ -2,6 +2,11 @@ package my_project.control;
 
 import KAGO_framework.control.ViewController;
 import my_project.model.House;
+import my_project.model.Tree;
+import my_project.model.Fence;
+import my_project.model.Sun;
+import my_project.model.Cloud;
+
 
 /**
  * Ein Objekt der Klasse ProgramController dient dazu das Programm zu steuern.
@@ -17,35 +22,59 @@ public class ProgramController {
 
 
     // Referenzen
-    private final ViewController viewController;  // diese Referenz soll auf ein Objekt der Klasse viewController zeigen. Über dieses Objekt wird das Fenster gesteuert.
-    private House firstHouse; // deklariert eine Referenz für ein Objekt der Klasse House
+    private final ViewController viewController;
+    private  Tree secondTree;
+    private House firstHouse;
+    private Tree firstTree;
+    private Tree thirdTree;
+    private Tree fourthTree;
+    private Tree fifthTree;
+    private Tree sixthTree;
+    private Tree eightTree;
+    private Fence firstFence;
+    private Sun firstSun;
+    private Cloud firstCloud;
+    private Cloud secondCloud;
 
-    /**
-     * Konstruktor
-     * Dieser legt das Objekt der Klasse ProgramController an, das den Programmfluss steuert.
-     * Damit der ProgramController auf das Fenster zugreifen kann, benötigt er eine Referenz auf das Objekt
-     * der Klasse viewController. Diese wird als Parameter übergeben.
-     * @param viewController das viewController-Objekt des Programms
-     */
+
     public ProgramController(ViewController viewController){
         this.viewController = viewController;
     }
 
-    /**
-     * Diese Methode wird genau ein mal nach Programmstart aufgerufen. Hier sollte also alles geregelt werden,
-     * was zu diesem Zeipunkt passieren muss.
-     */
     public void startProgram() {
-        // Erstelle ein Objekt der Klasse House und initialisiere damit die Referenz house1
-        firstHouse = new House();
-        // Teile dem ViewController-Objekt mit, dass das House-Objekt gezeichnet werden soll
+
+
+        firstSun = new Sun();
+        firstTree = new Tree(5);
+        secondTree = new Tree(100);
+        thirdTree = new Tree(200);
+        fourthTree = new Tree(300);
+        fifthTree = new Tree(500);
+        sixthTree = new Tree(400);
+        eightTree = new Tree(600);
+        firstHouse = new House(200, 360, 200, 240);
+        firstFence = new Fence();
+        firstCloud = new Cloud(500,90,100,70);
+        secondCloud = new Cloud(200,90,100,70);
+
+
+
+
+        viewController.draw(firstTree);
+        viewController.draw(secondTree);
+        viewController.draw(thirdTree);
+        viewController.draw(fourthTree);
+        viewController.draw(fifthTree);
+        viewController.draw(sixthTree);
+        viewController.draw(eightTree);
         viewController.draw(firstHouse);
+        viewController.draw(firstFence);
+        viewController.draw(firstSun);
+        viewController.draw(firstCloud);
+        viewController.draw(secondCloud);
+
     }
 
-    /**
-     * Diese Methode wird vom ViewController-Objekt automatisch mit jedem Frame aufgerufen (ca. 60mal pro Sekunde)
-     * @param dt Zeit seit letztem Frame in Sekunden
-     */
     public void updateProgram(double dt){
 
     }

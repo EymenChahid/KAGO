@@ -5,36 +5,123 @@ import KAGO_framework.view.DrawTool;
 
 import java.awt.*;
 
-/**
- * Repräsentiert ein Haus. Der Teil mit "extends" wird später erklärt und jetzt ignoriert - oder wurde schon erklärt.
- */
 public class House extends GraphicalObject {
 
-    /**
-     * Erzeugt ein neues Objekt der Klasse House
-     */
-    public House(){
-        // Hier passiert momentan nichts - da muss auch anfangs nichts dran geändert werden.
+
+    private final double houseWidth;
+    private final double houseHeight;
+    private final double houseX;
+    private final double houseY;
+
+
+
+    public House(double houseX, double houseY, double houseWidth, double houseHeight) {
+        this.houseX = houseX;
+        this.houseY = houseY;
+        this.houseWidth = houseWidth;
+        this.houseHeight = houseHeight;
     }
 
-
-    /**
-     * Diese Methode zeichnet den die optische Repräsentation eines House-Objekts. Wird vom Framework unaufhörlich automatisch mit jedem Frame aufgerufen.
-     */
     @Override
     public void draw(DrawTool drawTool) {
+
+
+
+        double doorWidth = 0.17 * houseWidth;
+        double doorHeight = 0.31 * houseHeight;
+        double doorX = houseX + (houseWidth * 0.5) - (doorWidth * 0.5);
+        double doorY = (houseY + houseHeight) - doorHeight;
+
+
+        double windowY = houseY + (houseHeight * 0.4);
+        double windowHeight = 0.15 * houseHeight;
+        double windowWidth = 0.25 * houseWidth;
+
+        double window1X = houseX + (houseWidth * 0.1);
+        double window2X = houseX + (houseWidth * 0.6);
+
+
+
+        double w1Vx = window1X + (0.5 * windowWidth);
+        double w1Vy1 = windowY;
+        double w1Vy2 = windowY + windowHeight;
+
+
+        double w2Vx = window2X + (0.5 * windowWidth);
+        double w2Vy1 = windowY;
+        double w2Vy2 = windowY + windowHeight;
+
+
+        double w1Hx1 = window1X;
+        double w1Hy = windowY + (windowHeight * 0.5);
+        double w1Hx2 = window1X + windowWidth;
+
+
+        double w2Hx1 = window2X;
+        double w2Hy = windowY + (windowHeight * 0.5);
+        double w2Hx2 = window2X + windowWidth;
+
+
+        double leftCornerX = houseX;
+        double leftCornerY = houseY;
+
+        double midPointX = houseX + (houseWidth * 0.5);
+        double midPointY = houseY - (0.5 * houseHeight);
+
+        double rightCornerX = houseX + houseWidth;
+        double rightCornerY = houseY;
+
+
+        double doorknobX = doorX + (doorWidth * 0.7);
+        double doorknobY = doorY + (doorHeight * 0.7);
+        double doorknobRadius = doorWidth * 0.09;
+
+
+        double chimneyX = houseX + (houseWidth * 0.7);
+        double chimneyY = midPointY;
+        double chimneyWidth = houseWidth * 0.25;
+        double chimneyHeight = houseHeight * 0.5;
+
+
         drawTool.setCurrentColor(Color.DARK_GRAY);
-        drawTool.drawFilledRectangle(150,300,100,80);
+        drawTool.drawFilledRectangle(houseX, houseY, houseWidth, houseHeight);
+
+        drawTool.setCurrentColor(Color.RED);
+        drawTool.drawFilledRectangle(doorX, doorY, doorWidth, doorHeight);
+
+        drawTool.setCurrentColor(Color.LIGHT_GRAY);
+        drawTool.drawFilledRectangle(window1X, windowY, windowWidth, windowHeight);
+        drawTool.drawFilledRectangle(window2X, windowY, windowWidth, windowHeight);
+
+        drawTool.setCurrentColor(Color.BLACK);
+        drawTool.drawRectangle(window1X, windowY, windowWidth, windowHeight);
+        drawTool.drawRectangle(window2X, windowY, windowWidth, windowHeight);
+
+        drawTool.drawLine(w1Vx, w1Vy1, w1Vx, w1Vy2);
+        drawTool.drawLine(w2Vx, w2Vy1, w2Vx, w2Vy2);
+        drawTool.drawLine(w1Hx1, w1Hy, w1Hx2, w1Hy);
+        drawTool.drawLine(w2Hx1, w2Hy, w2Hx2, w2Hy);
+
+        drawTool.drawTriangle(leftCornerX, leftCornerY, midPointX, midPointY, rightCornerX, rightCornerY);
+
+        drawTool.setCurrentColor(Color.GRAY);
+        drawTool.drawFilledRectangle(chimneyX, chimneyY, chimneyWidth, chimneyHeight);
+
+        drawTool.setCurrentColor(Color.RED);
+        drawTool.drawFilledTriangle(leftCornerX, leftCornerY, midPointX, midPointY, rightCornerX, rightCornerY);
+
+        drawTool.setCurrentColor(Color.YELLOW);
+        drawTool.drawFilledCircle(doorknobX, doorknobY, doorknobRadius);
     }
 
-    /**
-     * Wird mit jedem Frame vom Framework aufgerufen und dient zur Manipulation des Objekts im Verlauf
-     * der Zeit.
-     * @param dt die Sekunden, die seit dem letzten Aufruf von update vergangen sind
-     */
     @Override
-    public void update(double dt){
-        // Hier passiert momentan nichts - da muss auch anfangs nichts dran geändert werden.
-    }
+    public void update(double dt) {
 
+
+
+
+
+
+        // unverändert
+    }
 }
